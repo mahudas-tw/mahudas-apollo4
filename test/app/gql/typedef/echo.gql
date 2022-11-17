@@ -1,0 +1,14 @@
+type EchoSub {
+  field1: String
+  field2: String
+}
+
+type Echo {
+  fields: [String]
+  msg: String
+  sub: EchoSub
+}
+
+type Query {
+  echo(msg:String): Echo
+}

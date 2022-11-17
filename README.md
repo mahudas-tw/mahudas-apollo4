@@ -1,8 +1,25 @@
 # @mahudas/apollo4
 這是使用Apollo v4版本的Mahudas plugin。
 
+## Dependencies
++ mahudas^0.0.3
++ @apollo/server^4.1.1
++ @graphql-tools/load-files^6.6.1
++ @graphql-tools/merge^8.3.12
++ dataloader^2.1.0
+
 ## 使用
-如同一般的plugin，透過npm安裝之後，在Application的`plugin.env.js`裡加入：
+### Standalone
+```console
+npm i
+npm run mahudas
+```
+
+### As a plugin
+如同一般的plugin，透過npm安裝之後，在Application的`plugin.env.js`裡設定啟用。  
+```console
+npm i @mahudas/mongoose -s
+```
 ```js
 // config/plugin.deafult.js
 module.exports = {
