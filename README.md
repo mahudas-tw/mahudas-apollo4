@@ -2,10 +2,10 @@
 這是使用Apollo v4版本的Mahudas plugin。
 
 ## Dependencies
-+ mahudas^0.0.3
-+ @apollo/server^4.1.1
++ mahudas^0.0.7
++ @apollo/server^4.2.2
 + @graphql-tools/load-files^6.6.1
-+ @graphql-tools/merge^8.3.12
++ @graphql-tools/merge^8.3.14
 + dataloader^2.1.0
 
 ## 使用
