@@ -1,10 +1,10 @@
 {
   "name": "@mahudas/apollo4",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Apollo v4 plugin for Mahudas.",
   "main": "app.js",
   "scripts": {
-    "mahudas": "mahudas",
+    "mahudas": "NODE_ENV=production mahudas",
     "test": "mocha",
     "coverage": "nyc mocha"
   },
