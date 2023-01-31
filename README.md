@@ -55,7 +55,7 @@ options.typeDefs | 已經寫好的typedefs，如果此參數有值，會忽略ty
 options.resolvers | 已經寫好的resolvers，如果此參數有值，會忽略resolversDir
 schema | 已經合併的schema，很少被使用，如果此參數有值，會忽略typedefs跟resolvers的設定
 
-## 對於context的擴充
+## 對於Mahudas context的擴充
 @mahudas/apollo4 對context進行了擴充：
 ### ctx.gql.parseInfo(info:Object, deepPath:Sring|[String]):[String]
 parseInfo是用來解析query裡的fields，以方便開發者用來判斷要如何處理回傳資料。  
@@ -98,4 +98,27 @@ const dataloader = new ctx.gql.DataLoader(async(id)=> {
   return result;
 });
 const idResult = await dataloader.load(userid);
+```
+
+## 透過config.env.js擴充Apollo的ctx
+除了使用Mahudas本身的extends來擴充context以外，Apollo本身也有一個設定可以擴充context，這個設定可以透過config.env.js裡的`apollo4.options`來達成。  
+
+以下範例可以讓開發者在 resolver 裡的 ctx 直接取得 `ctx.dataloaders` 這個空物件。
+```js
+// config.env.js
+module.exports = {
+  apollo4: {
+    // ...
+    options: {
+      // 接收Mahudas的ctx為參數
+      // "只需"回傳需要擴充的Object就好，回傳型別必須是Object
+      context: async (ctx) => {
+        const toExt = {
+          dataloaders: {},
+        };
+        return toExt;
+      },
+    },
+  },
+}
 ```
