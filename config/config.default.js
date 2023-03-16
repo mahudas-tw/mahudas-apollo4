@@ -8,5 +8,6 @@ module.exports = {
       // resolvers
       // schema
     },
+    landingPage: false,
   },
 };

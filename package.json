@@ -1,10 +1,12 @@
 {
   "name": "@mahudas/apollo4",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Apollo v4 plugin for Mahudas.",
   "main": "app.js",
   "scripts": {
-    "mahudas": "NODE_ENV=production mahudas",
+    "mahudas": "mahudas",
+    "local": "APP_ENV=local mahudas",
+    "production": "NODE_ENV=production APP_ENV=production mahudas",
     "test": "mocha",
     "coverage": "nyc mocha"
   },
@@ -16,10 +18,10 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@apollo/server": "^4.2.2",
+    "@apollo/server": "^4.5.0",
     "@graphql-tools/load-files": "^6.6.1",
-    "@graphql-tools/merge": "^8.3.14",
-    "dataloader": "^2.1.0",
+    "@graphql-tools/merge": "^8.4.0",
+    "dataloader": "^2.2.2",
     "mahudas": "^0.0.7"
   },
   "devDependencies": {

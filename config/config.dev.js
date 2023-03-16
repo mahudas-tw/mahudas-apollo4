@@ -1,5 +1,5 @@
 module.exports = {
   apollo4: {
-    landingPage: false,
+    landingPage: true,
   },
 };
