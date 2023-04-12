@@ -2,8 +2,8 @@
 這是使用Apollo v4版本的Mahudas plugin。
 
 ## Dependencies
-+ mahudas^0.0.7
-+ @apollo/server^4.2.2
++ mahudas^0.1.3
++ @apollo/server^4.6.0
 + @graphql-tools/load-files^6.6.1
 + @graphql-tools/merge^8.3.14
 + dataloader^2.1.0
@@ -18,7 +18,7 @@ npm run mahudas
 ### As a plugin
 如同一般的plugin，透過npm安裝之後，在Application的`plugin.env.js`裡設定啟用。  
 ```console
-npm i @mahudas/mongoose -s
+npm i @mahudas/apollo4 -s
 ```
 ```js
 // config/plugin.deafult.js
@@ -57,6 +57,27 @@ schema | 已經合併的schema，很少被使用，如果此參數有值，會�
 
 ## 對於Mahudas context的擴充
 @mahudas/apollo4 對context進行了擴充：
+## ctx.gql.useDataLoader(name:String, fn: Function):DataLoader
+`@mahudas/apollo4`預設會自動啟用一個plugin，用來在ctx階段時存取多個resolvers之間共用的DataLoader。  
+DataLoader是以名稱為key值，如果name不存在，就會新增一個DataLoader，若是name已經存在，就會返回相對應的DataLoader。  
+
+```js
+// some_resolver.js
+module.exports = {
+  Query: {
+    me: async (rootValue, args, ctx) => {  
+      // 這邊會以users這個名稱為依據來取得DataLoader
+      const userDataLoader = ctx.gql.useDataLoader('users', async(user_ids) => {
+        // ... do somthing
+        return returnData;
+      });
+      const me = await userDataLoader.load(myid);
+      return me;
+    },
+  }
+}
+```
+
 ### ctx.gql.parseInfo(info:Object, deepPath:Sring|[String]):[String]
 parseInfo是用來解析query裡的fields，以方便開發者用來判斷要如何處理回傳資料。  
 其中，info參數為resolver接收到的第四個參數。  
